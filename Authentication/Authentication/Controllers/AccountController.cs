@@ -1,8 +1,10 @@
 ﻿using Authentication.Models;
+using Authentication.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -20,13 +22,13 @@ namespace Authentication.Controllers
     public class AccountController : ControllerBase
     {
         private IConfiguration _config;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
         public AccountController(
             IConfiguration config,
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager
             )
         {
             _config = config;
@@ -40,12 +42,12 @@ namespace Authentication.Controllers
         public async Task<IActionResult> Login(Login login)
         {
 
-            var user = new IdentityUser
+            var user = new AppUser
             {
                 UserName = login.UserName
             };
 
-            var currentUser = await _userManager.FindByNameAsync(login.UserName);
+            var currentUser = await _userManager.Users.Include(x=>x.Companies).SingleAsync(x=>x.UserName==login.UserName);
             var roles = await _userManager.GetRolesAsync(currentUser);
 
             var result = await _signInManager.PasswordSignInAsync(login.UserName, login.Password, login.RememberMe, false);
@@ -54,7 +56,7 @@ namespace Authentication.Controllers
             {
                 var token = Generate(user,roles);
 
-                var data = new TokenModel { User = user, Token = token, Roles = roles };
+                var data = new TokenModel { User = currentUser, Token = token, Roles = roles };
 
                 return Ok(data);
             }
@@ -63,7 +65,7 @@ namespace Authentication.Controllers
 
         }
 
-        private string Generate(IdentityUser user, IList<string> roles)
+        private string Generate(AppUser user, IList<string> roles)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

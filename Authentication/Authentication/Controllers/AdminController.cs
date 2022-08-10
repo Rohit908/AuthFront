@@ -1,4 +1,6 @@
-﻿using Authentication.Models;
+﻿using Authentication.Core.Entities;
+using Authentication.Infrastructure.Data;
+using Authentication.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -14,28 +16,52 @@ namespace Authentication.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly AppDbContext _context;
         public AdminController(
-            UserManager<IdentityUser> userManager, 
-            RoleManager<IdentityRole> roleManager)
+            UserManager<AppUser> userManager, 
+            RoleManager<IdentityRole> roleManager,
+            AppDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _context = context;
         }
 
-        
-        [HttpPost("AddUser")]
-        [Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> AddUser([FromBody] Register register)
+
+        [HttpGet("GetUsers/{companyCode}")]
+        //[Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetUsers(string companyCode)
         {
-            var user = new IdentityUser { UserName = register.UserName, Email = register.Email };
+            var users = _userManager.Users.Where(x=>x.CompanyCode==companyCode).ToList();
+            if(users!=null)
+            {
+                return Ok(users);
+            }
+            return BadRequest(new { message = "No users found" });
+        }
+
+        [HttpPost("AddAdmin")]
+        [Authorize(Roles = "Owner", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> AddAdmin(RegisterAdmin register)
+        {
+            var user = new AppUser { UserName = register.UserName, Email = register.Email, CompanyCode = register.CompanyCode };
             var result = await _userManager.CreateAsync(user, register.Password);
+            
             if (result.Succeeded)
             {
-                return Ok(user);
+                var roleResult = await _userManager.AddToRoleAsync(user, "Admin");
+                if (roleResult.Succeeded)
+                {
+                    return Ok(user);
+                }
+                else
+                {
+                    return BadRequest(roleResult.Errors.Select(x => x.Description));
+                }
             }
-            return BadRequest(result.Errors.Select(x=>x.Description));
+            return BadRequest(result.Errors.Select(x => x.Description));
         }
 
 
@@ -60,48 +86,46 @@ namespace Authentication.Controllers
         public async Task<IActionResult> MapRole(UserRoleResponse model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);
+            
+            List<string> rolesToAdd = new List<string>();
+            List<string> rolesToRemove = new List<string>();
 
-            foreach(var r in model.userRoles)
+            foreach (var r in model.userRoles)
             {
                 if(r.IsAssigned && !await _userManager.IsInRoleAsync(user, r.RoleName))
                 {
-                    var result = await _userManager.AddToRoleAsync(user, r.RoleName);
-
-                    if (result.Succeeded)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        return BadRequest(result.Errors);
-                    }
+                    rolesToAdd.Add(r.RoleName);
                 }
-                else
+                else if(!r.IsAssigned && await _userManager.IsInRoleAsync(user, r.RoleName))
                 {
-                    var result = await _userManager.RemoveFromRoleAsync(user, r.RoleName);
-
-                    if (result.Succeeded)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        return BadRequest(result.Errors);
-                    }
+                    rolesToRemove.Add(r.RoleName);
                 }
+            }
+
+            var result1 = await _userManager.RemoveFromRolesAsync(user, rolesToRemove);
+
+            if (!result1.Succeeded)
+            {
+                return BadRequest(result1.Errors);
+            }
+
+            var result = await _userManager.AddToRolesAsync(user, rolesToAdd);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
             }
 
             return Ok(new { message = "Role Mapped" });
         }
 
 
-        [HttpGet("GetUsersAndRoles")]
-        public async Task<IActionResult> GetUsersAndRoles()
+        [HttpGet("GetUsersAndRoles/{companyCode}")]
+        public async Task<IActionResult> GetUsersAndRoles(string companyCode)
         {
 
             List<UserRoleResponse> model = new List<UserRoleResponse>();
 
-            var users = _userManager.Users;
+            var users = _userManager.Users.Where(x=>x.CompanyCode==companyCode).ToList();
             var roles = _roleManager.Roles;
 
             foreach (var user in users)
@@ -137,6 +161,21 @@ namespace Authentication.Controllers
 
             return BadRequest(new {message="User or role not found"});
         }
+
+        [HttpGet("GetCompany")]
+        public async Task<IActionResult> GetCompany()
+        {
+
+            var companies = _context.Company.ToList();
+
+            if(companies!=null)
+            {
+                return Ok(companies);
+            }
+
+            return BadRequest(new { message = "User or role not found" });
+        }
+
 
     }
 }

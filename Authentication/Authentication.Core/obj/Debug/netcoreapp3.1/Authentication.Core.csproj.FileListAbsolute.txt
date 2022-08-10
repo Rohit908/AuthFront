@@ -1,0 +1,10 @@
+D:\.net\Authentication\Authentication.Core\bin\Debug\netcoreapp3.1\Authentication.Core.deps.json
+D:\.net\Authentication\Authentication.Core\bin\Debug\netcoreapp3.1\Authentication.Core.dll
+D:\.net\Authentication\Authentication.Core\bin\Debug\netcoreapp3.1\Authentication.Core.pdb
+D:\.net\Authentication\Authentication.Core\obj\Debug\netcoreapp3.1\Authentication.Core.csproj.AssemblyReference.cache
+D:\.net\Authentication\Authentication.Core\obj\Debug\netcoreapp3.1\Authentication.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\.net\Authentication\Authentication.Core\obj\Debug\netcoreapp3.1\Authentication.Core.AssemblyInfoInputs.cache
+D:\.net\Authentication\Authentication.Core\obj\Debug\netcoreapp3.1\Authentication.Core.AssemblyInfo.cs
+D:\.net\Authentication\Authentication.Core\obj\Debug\netcoreapp3.1\Authentication.Core.csproj.CoreCompileInputs.cache
+D:\.net\Authentication\Authentication.Core\obj\Debug\netcoreapp3.1\Authentication.Core.dll
+D:\.net\Authentication\Authentication.Core\obj\Debug\netcoreapp3.1\Authentication.Core.pdb

@@ -1,4 +1,3 @@
-using Authentication.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,6 +15,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
+using Authentication.Core.Repositories;
+using Authentication.Core.Repositories.Base;
+using Authentication.Infrastructure.Repositories;
+using Authentication.Infrastructure.Repositories.Base;
+using System.Reflection;
+using Authentication.Application.Handlers.CommandHandlers;
+using Authentication.Infrastructure.Data;
+using Authentication.Core.Entities;
 
 namespace Authentication
 {
@@ -33,19 +41,24 @@ namespace Authentication
         {
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
-            //services.AddCors(options =>
-            //{
-            //    options.AddDefaultPolicy(
-            //        builder =>
-            //        {
-            //            builder.WithOrigins("http://localhost:4200")
-            //                                .AllowAnyHeader()
-            //                                .AllowAnyMethod();
-            //        });
-            //}); 
+            services.AddAutoMapper(typeof(Startup));
+            services.AddMediatR(typeof(CreateCompanyHandler).GetTypeInfo().Assembly);
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddSwaggerGen(s=>
+            {
+                s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "V1",
+                    Title = "Authentication Api",
+                    Description = "API for Authentication"
+                });
+            });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(option => option.TokenValidationParameters = new TokenValidationParameters { 
@@ -64,22 +77,20 @@ namespace Authentication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsProduction())
             {
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    c.RoutePrefix = string.Empty;
+                });
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            //app.UseCors(builder =>
-            //{
-            //    builder
-            //    .AllowAnyOrigin()
-            //    .AllowAnyMethod()
-            //    .AllowAnyHeader();
-            //});
 
             app.UseAuthentication();
             app.UseAuthorization();

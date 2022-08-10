@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication\Authentication.csproj", "{B7C91281-B505-4C7F-ACBE-75714A280167}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication\Authentication.csproj", "{B7C91281-B505-4C7F-ACBE-75714A280167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Application", "Authentication.Application\Authentication.Application.csproj", "{801208CD-EE86-4630-B7A3-30CF12D3CB97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Infrastructure", "Authentication.Infrastructure\Authentication.Infrastructure.csproj", "{4A8E4B26-CFAC-44DC-92F9-E401CFDA8770}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Core", "Authentication.Core\Authentication.Core.csproj", "{43EF4CE8-E3CE-4D8E-ACDF-89F75C187F01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{B7C91281-B505-4C7F-ACBE-75714A280167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7C91281-B505-4C7F-ACBE-75714A280167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7C91281-B505-4C7F-ACBE-75714A280167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{801208CD-EE86-4630-B7A3-30CF12D3CB97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801208CD-EE86-4630-B7A3-30CF12D3CB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801208CD-EE86-4630-B7A3-30CF12D3CB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801208CD-EE86-4630-B7A3-30CF12D3CB97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A8E4B26-CFAC-44DC-92F9-E401CFDA8770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A8E4B26-CFAC-44DC-92F9-E401CFDA8770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A8E4B26-CFAC-44DC-92F9-E401CFDA8770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A8E4B26-CFAC-44DC-92F9-E401CFDA8770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EF4CE8-E3CE-4D8E-ACDF-89F75C187F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43EF4CE8-E3CE-4D8E-ACDF-89F75C187F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43EF4CE8-E3CE-4D8E-ACDF-89F75C187F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43EF4CE8-E3CE-4D8E-ACDF-89F75C187F01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
