@@ -32,7 +32,7 @@ namespace Authentication.Controllers
 
         [HttpGet("GetUsers/{companyCode}")]
         //[Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> GetUsers(string companyCode)
+        public IActionResult GetUsers(string companyCode)
         {
             var users = _userManager.Users.Where(x=>x.CompanyCode==companyCode).ToList();
             if(users!=null)
@@ -163,7 +163,7 @@ namespace Authentication.Controllers
         }
 
         [HttpGet("GetCompany")]
-        public async Task<IActionResult> GetCompany()
+        public IActionResult GetCompany()
         {
 
             var companies = _context.Company.ToList();

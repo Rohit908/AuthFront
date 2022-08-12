@@ -23,10 +23,11 @@ namespace Authentication.Infrastructure.Repositories.Base
             return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task<T> DeleteAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
+            return entity;
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()

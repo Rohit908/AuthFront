@@ -81,3 +81,6 @@ D:\.net\Authentication\Authentication\bin\Debug\netcoreapp3.1\Authentication.Inf
 D:\.net\Authentication\Authentication\bin\Debug\netcoreapp3.1\Authentication.Application.pdb
 D:\.net\Authentication\Authentication\bin\Debug\netcoreapp3.1\Authentication.Core.pdb
 D:\.net\Authentication\Authentication\bin\Debug\netcoreapp3.1\Authentication.Infrastructure.pdb
+D:\.net\Authentication\Authentication\bin\Debug\netcoreapp3.1\FluentValidation.dll
+D:\.net\Authentication\Authentication\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+D:\.net\Authentication\Authentication\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll

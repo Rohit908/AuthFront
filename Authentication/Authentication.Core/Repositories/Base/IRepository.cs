@@ -11,6 +11,6 @@ namespace Authentication.Core.Repositories.Base
         Task<T> GetByIdAsync(int id);
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        Task<T> DeleteAsync(T entity);
     }
 }

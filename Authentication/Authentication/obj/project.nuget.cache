@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "DWy4Px/lHaSA6ZcONm9RmrsGT4W8LDe74ZlVPOc2NPkeMudhZI5RPtYJYIvy5/m2l1XjzJHbZBdYvWzI0zpeGQ==",
+  "dgSpecHash": "X8ZfyrcPI8VtMtcP2Ig7wf1JuafIxBpEv/zZ1zYTJeQfrU2479zUAOUFw+9ESZJyCXUX13ejOjSSvYyVraa4Fg==",
   "success": true,
   "projectFilePath": "D:\\.net\\Authentication\\Authentication\\Authentication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bhanushali\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Bhanushali\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\Bhanushali\\.nuget\\packages\\fluentvalidation\\11.2.0\\fluentvalidation.11.2.0.nupkg.sha512",
+    "C:\\Users\\Bhanushali\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.1\\fluentvalidation.aspnetcore.11.2.1.nupkg.sha512",
+    "C:\\Users\\Bhanushali\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.0\\fluentvalidation.dependencyinjectionextensions.11.2.0.nupkg.sha512",
     "C:\\Users\\Bhanushali\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\Bhanushali\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
     "C:\\Users\\Bhanushali\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

@@ -44,7 +44,7 @@ namespace Authentication.Controllers
         public async Task<IActionResult> DeleteCompany(string companyCode)
         {
             var result = await _mediator.Send(new DeleteCompanyCommand { CompanyCode = companyCode });
-            return Ok(new { data = result });
+            return Ok(result);
         }
     }
 }

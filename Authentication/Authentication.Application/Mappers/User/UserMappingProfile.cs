@@ -14,7 +14,9 @@ namespace Authentication.Application.Mappers.User
         public UserMappingProfile()
         {
             CreateMap<AppUser, UserResponse>().ReverseMap();
-            CreateMap<Register, CreateUserCommand>().ReverseMap();
+            CreateMap<AppUser, CreateUserCommand>().ReverseMap();
+            CreateMap<AppUser, UpdateUserCommand>().ReverseMap();
+            CreateMap<AppUser, DeleteUserCommand>().ReverseMap();
         }
     }
 }

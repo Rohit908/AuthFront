@@ -12,6 +12,6 @@ namespace Authentication.Application.Commands.User
         public string Email { get; set; }
         public string Password { get; set; }
         public string CompanyCode { get; set; }
-        public bool asAdmin { get; set; } = false;
+        public bool isAdmin { get; set; }
     }
 }

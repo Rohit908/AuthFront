@@ -24,6 +24,10 @@ using System.Reflection;
 using Authentication.Application.Handlers.CommandHandlers;
 using Authentication.Infrastructure.Data;
 using Authentication.Core.Entities;
+using Authentication.Application;
+using FluentValidation;
+using Authentication.Application.Validators.User;
+using FluentValidation.AspNetCore;
 
 namespace Authentication
 {
@@ -48,9 +52,11 @@ namespace Authentication
             services.AddMediatR(typeof(CreateCompanyHandler).GetTypeInfo().Assembly);
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICompanyRepository, CompanyRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
 
-            services.AddSwaggerGen(s=>
+
+            services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
+
+            services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
@@ -61,8 +67,8 @@ namespace Authentication
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(option => option.TokenValidationParameters = new TokenValidationParameters { 
-                    ValidateIssuer  = true,
+                .AddJwtBearer(option => option.TokenValidationParameters = new TokenValidationParameters {
+                    ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
@@ -71,7 +77,7 @@ namespace Authentication
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 });
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(x => { x.ImplicitlyValidateChildProperties = true; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

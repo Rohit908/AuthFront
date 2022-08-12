@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "fgvBNVBQ5DQj5sDAKYLL3Gv59X3+b6yDzqa703qPumo8VfAnaVjM9x9x6LnunPNv9s+wAQQENmZJlYrFeNtLyQ==",
+  "dgSpecHash": "fieot24k282jxpfHfLzQClSeTMX2M3unfYBI1or7RX61YbkQE0WGxEHYpKxNXDrD/34rInLRGA3br5CqPua5dg==",
   "success": true,
   "projectFilePath": "D:\\.net\\Authentication\\Authentication.Application\\Authentication.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bhanushali\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Bhanushali\\.nuget\\packages\\fluentvalidation\\11.2.0\\fluentvalidation.11.2.0.nupkg.sha512",
+    "C:\\Users\\Bhanushali\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.0\\fluentvalidation.dependencyinjectionextensions.11.2.0.nupkg.sha512",
     "C:\\Users\\Bhanushali\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\Bhanushali\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.27\\microsoft.aspnetcore.cryptography.internal.3.1.27.nupkg.sha512",
     "C:\\Users\\Bhanushali\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.27\\microsoft.aspnetcore.cryptography.keyderivation.3.1.27.nupkg.sha512",

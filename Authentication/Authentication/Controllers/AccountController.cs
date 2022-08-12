@@ -41,7 +41,6 @@ namespace Authentication.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(Login login)
         {
-
             var user = new AppUser
             {
                 UserName = login.UserName

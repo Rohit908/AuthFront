@@ -12,18 +12,20 @@ using System.Threading.Tasks;
 
 namespace Authentication.Application.Handlers.CommandHandlers
 {
-    public class DeleteCompanyHandler : IRequestHandler<DeleteCompanyCommand, string>
+    public class DeleteCompanyHandler : IRequestHandler<DeleteCompanyCommand, CompanyResponse>
     {
         private readonly ICompanyRepository _companyRepo;
         public DeleteCompanyHandler(ICompanyRepository companyRepo)
         {
             _companyRepo = companyRepo;
         }
-        public async Task<string> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
+        public async Task<CompanyResponse> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
         {
             var companyEntitiy = await _companyRepo.GetByCodeAsync(request.CompanyCode);
-            await _companyRepo.DeleteAsync(companyEntitiy);
-            return companyEntitiy.CompanyCode;
+            var deletedCompany = await _companyRepo.DeleteAsync(companyEntitiy);
+
+            var companyResponse = CompanyMapper.Mapper.Map<CompanyResponse>(deletedCompany);
+            return companyResponse;
         }
     }
 }

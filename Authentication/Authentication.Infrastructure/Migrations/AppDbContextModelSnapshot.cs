@@ -98,6 +98,9 @@ namespace Authentication.Infrastructure.Migrations
                     b.Property<string>("CompanyName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.HasKey("CompanyCode");
 
                     b.ToTable("Company");
