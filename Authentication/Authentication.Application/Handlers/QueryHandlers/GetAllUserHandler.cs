@@ -23,9 +23,18 @@ namespace Authentication.Application.Handlers.QueryHandlers
         }
         public async Task<List<UserResponse>> Handle(GetAllUserQuery request, CancellationToken cancellationToken)
         {
-            var users = await _userManager.Users.ToListAsync();
-            var usersResponse = UserMapper.Mapper.Map<List<UserResponse>>(users);
-            return usersResponse;
+            if (request.Role != null)
+            {
+                var users = await _userManager.GetUsersInRoleAsync(request.Role);
+                var usersResponse = UserMapper.Mapper.Map<List<UserResponse>>(users);
+                return usersResponse;
+            }
+            else
+            {
+                var users = await _userManager.Users.ToListAsync();
+                var usersResponse = UserMapper.Mapper.Map<List<UserResponse>>(users);
+                return usersResponse;
+            }
         }
     }
 }

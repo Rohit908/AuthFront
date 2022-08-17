@@ -16,4 +16,10 @@
     <ProjectReference Include="..\Authentication.Infrastructure\Authentication.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\CompanyFeatures\GetCompany\" />
+    <Folder Include="Features\UserFeatures\DeleteUser\" />
+    <Folder Include="Features\UserFeatures\GetUser\" />
+  </ItemGroup>
+
 </Project>

@@ -10,6 +10,6 @@ namespace Authentication.Core.Entities
     {
         public string CompanyCode { get; set; }
         [ForeignKey("CompanyCode")]
-        public virtual Company Companies { get; set; }
+        public virtual Company Company { get; set; }
     }
 }

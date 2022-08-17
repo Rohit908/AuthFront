@@ -13,6 +13,11 @@ using Authentication.Infrastructure.Data;
 using Authentication.Application.Responses;
 using Authentication.Application.Commands;
 using Microsoft.AspNetCore.Authorization;
+using Authentication.Application.Commands.Company;
+using Authentication.Application.Features.CompanyFeatures.AddCompany;
+using Authentication.Application.Features.CompanyFeatures.DeleteCompany;
+using Authentication.Application.Features.CompanyFeatures.UpdateCompany;
+using Authentication.Application.Features.CompanyFeatures.GetAllCompany;
 
 namespace Authentication.Controllers
 {
@@ -29,12 +34,20 @@ namespace Authentication.Controllers
         [HttpGet("GetCompany")]
         public async Task<List<Company>> GetCompany()
         {
-            return await _mediator.Send(new GetAllCompanyQuery());
+            return await _mediator.Send(new GetAllCompanyRequestModel());
         }
 
         [HttpPost("AddCompany")]
         //[Authorize(Roles = "Owner")]
-        public async Task<ActionResult<CompanyResponse>> CreateCompany(CreateCompanyCommand command)
+        public async Task<ActionResult<AddCompanyResponseModel>> CreateCompany(AddCompanyRequestModel command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPut("UpdateCompany")]
+        //[Authorize(Roles = "Owner")]
+        public async Task<ActionResult<UpdateCompanyResponseModel>> UpdateCompany(UpdateCompanyRequestModel command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
@@ -43,7 +56,7 @@ namespace Authentication.Controllers
         [HttpDelete("DeleteCompany/{companyCode}")]
         public async Task<IActionResult> DeleteCompany(string companyCode)
         {
-            var result = await _mediator.Send(new DeleteCompanyCommand { CompanyCode = companyCode });
+            var result = await _mediator.Send(new DeleteCompanyRequestModel { CompanyCode = companyCode });
             return Ok(result);
         }
     }

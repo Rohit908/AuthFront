@@ -1,4 +1,7 @@
 ﻿using Authentication.Application.Commands.User;
+using Authentication.Application.Features.UserFeatures.AddUser;
+using Authentication.Application.Features.UserFeatures.GetAllUser;
+using Authentication.Application.Features.UserFeatures.UpdateUser;
 using Authentication.Application.Queries;
 using Authentication.Application.Responses;
 using Authentication.Core.Entities;
@@ -13,10 +16,14 @@ namespace Authentication.Application.Mappers.User
     {
         public UserMappingProfile()
         {
-            CreateMap<AppUser, UserResponse>().ReverseMap();
-            CreateMap<AppUser, CreateUserCommand>().ReverseMap();
-            CreateMap<AppUser, UpdateUserCommand>().ReverseMap();
-            CreateMap<AppUser, DeleteUserCommand>().ReverseMap();
+            CreateMap<AppUser, AddUserResponseModel>().ReverseMap();
+            CreateMap<AppUser, AddUserRequestModel>().ReverseMap();
+
+            CreateMap<AppUser, GetAllUserResponseModel>().ReverseMap();
+            CreateMap<AppUser, GetAllUserRequestModel>().ReverseMap();
+
+            CreateMap<AppUser, UpdateUserResponseModel>().ReverseMap();
+            CreateMap<AppUser, UpdateUserRequestModel>().ReverseMap();
         }
     }
 }

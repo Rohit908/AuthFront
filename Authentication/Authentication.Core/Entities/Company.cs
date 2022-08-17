@@ -12,6 +12,6 @@ namespace Authentication.Core.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string CompanyCode { get; set; }
         public string CompanyName { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

@@ -9,6 +9,6 @@ namespace Authentication.Application.Queries
 {
     public class GetAllUserQuery:IRequest<List<UserResponse>>
     {
-
+        public string Role { get; set; }
     }
 }

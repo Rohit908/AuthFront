@@ -1,4 +1,7 @@
 ﻿using Authentication.Application.Commands.User;
+using Authentication.Application.Features.UserFeatures.AddUser;
+using Authentication.Application.Features.UserFeatures.GetAllUser;
+using Authentication.Application.Features.UserFeatures.UpdateUser;
 using Authentication.Application.Queries;
 using Authentication.Application.Queries.User;
 using Authentication.Core.Entities;
@@ -21,67 +24,41 @@ namespace Authentication.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-
-        private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly AppDbContext _context;
         private readonly IMediator _mediator;
 
         public UserController(
-            UserManager<AppUser> userManager, 
-            RoleManager<IdentityRole> roleManager, 
-            AppDbContext context,
             IMediator mediator)
         {
-            _userManager = userManager;
-            _roleManager = roleManager;
-            _context = context;
             _mediator = mediator;
         }
 
         [HttpGet("GetUser")]
-        public async Task<IActionResult> GetAllUser(string companyCode)
+        public async Task<IActionResult> GetAllUser(string companyCode, string role)
         {
-            var query = new GetAllUserQuery();
+            var query = new GetAllUserRequestModel() { CompanyCode=companyCode, Role=role};
             var result = await _mediator.Send(query);
-            if (companyCode == null)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return Ok(result.Where(x=>x.CompanyCode == companyCode));
-            }
+            return Ok(result);
         }
 
-        [HttpGet("GetUser/{id}/{companyCode?}")]
-        public async Task<IActionResult> GetUserById(string id, string companyCode=null)
+        [HttpGet("GetUser/{id}")]
+        public async Task<IActionResult> GetUserById(string id)
         {
             var query = new GetUserByIdQuery() { Id = id };
             var result = await _mediator.Send(query);
             return Ok(result);
         }
 
-
         [HttpPost("AddUser")]
         //[Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> AddUser(CreateUserCommand command)
+        public async Task<IActionResult> AddUser(AddUserRequestModel model)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(model);
             return Ok(result);
         }
 
-        [HttpPost("AddAdmin")]
+        [HttpPut("UpdateUser")]
         //[Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> AddAdmin(CreateUserCommand command)
-        {
-            var result = await _mediator.Send(command);
-            return Ok(result);
-        }
-
-        [HttpPost("UpdateUser")]
-        //[Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> UpdateUser(UpdateUserCommand command)
+        public async Task<IActionResult> UpdateUser(UpdateUserResponseModel command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);

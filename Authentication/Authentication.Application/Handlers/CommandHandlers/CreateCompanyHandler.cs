@@ -1,7 +1,7 @@
 ﻿using Authentication.Application.Commands;
 using Authentication.Application.Mappers;
 using Authentication.Application.Responses;
-using Authentication.Core.Entities;
+using entity = Authentication.Core.Entities;
 using Authentication.Core.Repositories;
 using MediatR;
 using System;
@@ -22,7 +22,7 @@ namespace Authentication.Application.Handlers.CommandHandlers
 
         public async Task<CompanyResponse> Handle(CreateCompanyCommand request, CancellationToken cancellationToken)
         {
-            var companyEntitiy = CompanyMapper.Mapper.Map<Company>(request);
+            var companyEntitiy = CompanyMapper.Mapper.Map<entity.Company>(request);
             if (companyEntitiy is null)
             {
                 throw new ApplicationException("Issue with mapper");

@@ -46,7 +46,7 @@ namespace Authentication.Controllers
                 UserName = login.UserName
             };
 
-            var currentUser = await _userManager.Users.Include(x=>x.Companies).SingleAsync(x=>x.UserName==login.UserName);
+            var currentUser = await _userManager.Users.Include(x=>x.Company).SingleAsync(x=>x.UserName==login.UserName);
             var roles = await _userManager.GetRolesAsync(currentUser);
 
             var result = await _signInManager.PasswordSignInAsync(login.UserName, login.Password, login.RememberMe, false);
