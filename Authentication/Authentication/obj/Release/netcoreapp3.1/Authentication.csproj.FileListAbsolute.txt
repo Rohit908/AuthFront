@@ -71,3 +71,16 @@ D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\Authentication.d
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\Authentication.pdb
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\Authentication.genruntimeconfig.cache
 D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\AutoMapper.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\FluentValidation.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\FluentValidation.AspNetCore.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\MediatR.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\MediatR.Extensions.Microsoft.DependencyInjection.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\Authentication.Application.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\Authentication.Core.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\Authentication.Infrastructure.dll
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\Authentication.Application.pdb
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\Authentication.Core.pdb
+D:\.net\Authentication\Authentication\bin\Release\netcoreapp3.1\Authentication.Infrastructure.pdb

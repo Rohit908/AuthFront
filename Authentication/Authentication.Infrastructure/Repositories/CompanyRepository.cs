@@ -22,6 +22,13 @@ namespace Authentication.Infrastructure.Repositories
             return await _context.Set<Company>().FindAsync(companyCode);
         }
 
+        public async Task<List<Company>> GetCompanyWithFilter(string filter)
+        {
+            return await _context.Set<Company>().Where(c => c.CompanyName.Contains(filter)).ToListAsync();
+        }
+
+
+
         //public new async Task<Company> AddAsync(Company entity)
         //{
         //    entity.IsActive = true;

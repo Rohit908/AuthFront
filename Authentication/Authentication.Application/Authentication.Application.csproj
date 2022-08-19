@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -17,8 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\CompanyFeatures\GetCompany\" />
-    <Folder Include="Features\UserFeatures\DeleteUser\" />
     <Folder Include="Features\UserFeatures\GetUser\" />
   </ItemGroup>
 

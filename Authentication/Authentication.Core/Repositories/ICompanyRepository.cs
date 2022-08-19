@@ -10,5 +10,6 @@ namespace Authentication.Core.Repositories
     public interface ICompanyRepository: IRepository<Company>
     {
         Task<Company> GetByCodeAsync(string companyCode);
+        Task<List<Company>> GetCompanyWithFilter(string filter);
     }
 }

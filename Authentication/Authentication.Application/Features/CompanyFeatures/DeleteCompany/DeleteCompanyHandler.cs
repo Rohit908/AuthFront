@@ -18,8 +18,14 @@ namespace Authentication.Application.Features.CompanyFeatures.DeleteCompany
         }
         public async Task<DeleteCompanyResponseModel> Handle(DeleteCompanyRequestModel request, CancellationToken cancellationToken)
         {
-            var companyEntitiy = await _companyRepo.GetByCodeAsync(request.CompanyCode);
-            var deletedCompany = await _companyRepo.DeleteAsync(companyEntitiy);
+            var company = await _companyRepo.GetByCodeAsync(request.CompanyCode);
+
+            if(company == null)
+            {
+                return null;
+            }
+
+            var deletedCompany = await _companyRepo.DeleteAsync(company);
 
             var companyResponse = CompanyMapper.Mapper.Map<DeleteCompanyResponseModel>(deletedCompany);
             return companyResponse;

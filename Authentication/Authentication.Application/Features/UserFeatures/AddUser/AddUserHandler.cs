@@ -21,17 +21,30 @@ namespace Authentication.Application.Features.UserFeatures.AddUser
 
         public async Task<AddUserResponseModel> Handle(AddUserRequestModel request, CancellationToken cancellationToken)
         {
+            AddUserResponseModel response = new AddUserResponseModel();
+
             var user = UserMapper.Mapper.Map<AppUser>(request);
             var result = await _userManager.CreateAsync(user, request.Password);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
+                if (request.Role == "Admin")
+                {
+                    var roleResult = await _userManager.AddToRoleAsync(user, "Admin");
+                    if(!roleResult.Succeeded)
+                    {
+                        return null;
+                    }
+                }
+
                 var newUser = await _userManager.FindByNameAsync(request.UserName);
-                var response = UserMapper.Mapper.Map<AddUserResponseModel>(newUser);
+                response = UserMapper.Mapper.Map<AddUserResponseModel>(newUser);
+
                 return response;
             }
 
-            return null;
+            response.Errors = (List<IdentityError>)result.Errors;
+            return response;
 
         }
     }

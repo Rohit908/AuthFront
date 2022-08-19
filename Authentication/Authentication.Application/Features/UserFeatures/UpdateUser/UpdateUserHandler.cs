@@ -20,10 +20,18 @@ namespace Authentication.Application.Features.UserFeatures.UpdateUser
         }
         public async Task<UpdateUserResponseModel> Handle(UpdateUserRequestModel request, CancellationToken cancellationToken)
         {
-            var user = UserMapper.Mapper.Map<AppUser>(request);
-            var updatedUser = await _userManager.UpdateAsync(user);
-            var response = UserMapper.Mapper.Map<UpdateUserResponseModel>(updatedUser);
-            return response;
+            var user = await _userManager.FindByIdAsync(request.Id);
+            if (user != null)
+            {
+                user = UserMapper.Mapper.Map<UpdateUserRequestModel,AppUser>(request, user);
+            }
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                var response = UserMapper.Mapper.Map<UpdateUserResponseModel>(user);
+                return response;
+            }
+            return null;
         }
     }
 }

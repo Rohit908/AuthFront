@@ -8,5 +8,6 @@ namespace Authentication.Application.Features.CompanyFeatures.GetAllCompany
     public class GetAllCompanyResponseModel
     {
         public List<Company> Companies { get; set; }
+        public int Size { get; set; }
     }
 }

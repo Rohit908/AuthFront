@@ -1,4 +1,5 @@
-﻿using Authentication.Core.Entities;
+﻿using Authentication.Application.Features.CompanyFeatures.GetAllCompany;
+using Authentication.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

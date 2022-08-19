@@ -28,6 +28,7 @@ using Authentication.Application;
 using FluentValidation;
 using Authentication.Application.Validators.User;
 using FluentValidation.AspNetCore;
+using Authentication.Application.Features.CompanyFeatures.AddCompany;
 
 namespace Authentication
 {
@@ -44,7 +45,10 @@ namespace Authentication
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<AppDbContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("Default"));
+                options.EnableSensitiveDataLogging();
+                });
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
@@ -53,8 +57,7 @@ namespace Authentication
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICompanyRepository, CompanyRepository>();
 
-
-            services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
+            services.AddValidatorsFromAssemblyContaining<AddCompanyValidator>();
 
             services.AddSwaggerGen(s =>
             {
@@ -77,7 +80,20 @@ namespace Authentication
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 });
 
-            services.AddControllers().AddFluentValidation(x => { x.ImplicitlyValidateChildProperties = true; });
+            services.AddControllers();
+            services.AddFluentValidationAutoValidation();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44351", "http://localhost:4200")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,6 +111,14 @@ namespace Authentication
             }
 
             //app.UseHttpsRedirection();
+
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 
             app.UseRouting();
 

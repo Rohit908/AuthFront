@@ -9,6 +9,8 @@ using Authentication.Application.Commands.Company;
 using Authentication.Application.Features.CompanyFeatures.AddCompany;
 using Authentication.Application.Features.CompanyFeatures.DeleteCompany;
 using Authentication.Application.Features.CompanyFeatures.UpdateCompany;
+using Authentication.Application.Features.CompanyFeatures.GetAllCompany;
+using Authentication.Application.Features.CompanyFeatures.GetCompany;
 
 namespace Authentication.Application.Mappers
 {
@@ -23,6 +25,9 @@ namespace Authentication.Application.Mappers
 
             CreateMap<Company, UpdateCompanyResponseModel>().ReverseMap();
             CreateMap<Company, UpdateCompanyRequestModel>().ReverseMap();
+
+            CreateMap<Company, GetCompanyResponseModel>().ReverseMap();
+
         }
     }
 }

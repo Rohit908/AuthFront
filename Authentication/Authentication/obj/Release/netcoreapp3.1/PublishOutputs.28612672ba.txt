@@ -4,6 +4,13 @@ D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\appse
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.dll
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.runtimeconfig.json
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.pdb
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\AutoMapper.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\FluentValidation.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\FluentValidation.AspNetCore.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\FluentValidation.DependencyInjectionExtensions.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\MediatR.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\MediatR.Extensions.Microsoft.DependencyInjection.dll
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -55,4 +62,10 @@ D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\runti
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.Application.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.Core.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.Infrastructure.dll
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.Application.pdb
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.Core.pdb
+D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.Infrastructure.pdb
 D:\.net\Authentication\Authentication\obj\Release\netcoreapp3.1\PubTmp\Out\Authentication.deps.json

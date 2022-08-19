@@ -1,5 +1,6 @@
 ﻿using Authentication.Application.Commands.User;
 using Authentication.Application.Features.UserFeatures.AddUser;
+using Authentication.Application.Features.UserFeatures.DeleteUser;
 using Authentication.Application.Features.UserFeatures.GetAllUser;
 using Authentication.Application.Features.UserFeatures.UpdateUser;
 using Authentication.Application.Queries;
@@ -50,25 +51,32 @@ namespace Authentication.Controllers
 
         [HttpPost("AddUser")]
         //[Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> AddUser(AddUserRequestModel model)
+        public async Task<IActionResult> AddUser(AddUserRequestModel model, string role)
         {
+            model.Role = role;
             var result = await _mediator.Send(model);
+
+            if(result.Errors!=null)
+            {
+                return BadRequest(result.Errors);
+            }
+
             return Ok(result);
         }
 
         [HttpPut("UpdateUser")]
         //[Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> UpdateUser(UpdateUserResponseModel command)
+        public async Task<IActionResult> UpdateUser(UpdateUserRequestModel command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
         }
 
-        [HttpPost("DeleteUser")]
+        [HttpDelete("DeleteUser/{id}")]
         //[Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> DeleteUser(DeleteUserCommand command)
+        public async Task<IActionResult> DeleteUser(string id)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(new DeleteUserRequestModel() { Id=id});
             return Ok(result);
         }
 

@@ -18,6 +18,7 @@ using Authentication.Application.Features.CompanyFeatures.AddCompany;
 using Authentication.Application.Features.CompanyFeatures.DeleteCompany;
 using Authentication.Application.Features.CompanyFeatures.UpdateCompany;
 using Authentication.Application.Features.CompanyFeatures.GetAllCompany;
+using Authentication.Application.Features.CompanyFeatures.GetCompany;
 
 namespace Authentication.Controllers
 {
@@ -32,9 +33,17 @@ namespace Authentication.Controllers
         }
 
         [HttpGet("GetCompany")]
-        public async Task<List<Company>> GetCompany()
+        public async Task<IActionResult> GetCompany(string offset, string limit, string filter)
         {
-            return await _mediator.Send(new GetAllCompanyRequestModel());
+            var result = await _mediator.Send(new GetAllCompanyRequestModel() { Offset=offset, Limit=limit, Filter=filter});
+            return Ok(result);
+        }
+
+        [HttpGet("GetCompany/{companyCode}")]
+        public async Task<IActionResult> GetCompany(string companyCode)
+        {
+            var result = await _mediator.Send(new GetCompanyRequestModel() { CompanyCode=companyCode});
+            return Ok(result);
         }
 
         [HttpPost("AddCompany")]
@@ -50,14 +59,24 @@ namespace Authentication.Controllers
         public async Task<ActionResult<UpdateCompanyResponseModel>> UpdateCompany(UpdateCompanyRequestModel command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(new { errorMessage = "Company Not Found" });
         }
 
         [HttpDelete("DeleteCompany/{companyCode}")]
         public async Task<IActionResult> DeleteCompany(string companyCode)
         {
             var result = await _mediator.Send(new DeleteCompanyRequestModel { CompanyCode = companyCode });
-            return Ok(result);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(new { message = "Company Not Found" });
         }
     }
 }

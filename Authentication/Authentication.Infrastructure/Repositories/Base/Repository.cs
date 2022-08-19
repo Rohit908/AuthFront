@@ -3,6 +3,7 @@ using Authentication.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,6 +31,7 @@ namespace Authentication.Infrastructure.Repositories.Base
             return entity;
         }
 
+
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
@@ -38,6 +40,16 @@ namespace Authentication.Infrastructure.Repositories.Base
         public async Task<T> GetByIdAsync(int id)
         {
             return await _context.Set<T>().FindAsync(id);
+        }
+
+        public async Task<List<T>> GetCompanyWithOffsetLimit(string offset, string limit)
+        {
+            return await _context.Set<T>().Skip(Convert.ToInt32(offset)).Take(Convert.ToInt32(limit)).ToListAsync();
+        }
+
+        public async Task<int> GetSize()
+        {
+            return await _context.Set<T>().CountAsync();
         }
 
         public async Task<T> UpdateAsync(T entity)

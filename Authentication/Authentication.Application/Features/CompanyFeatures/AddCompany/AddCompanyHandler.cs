@@ -20,13 +20,8 @@ namespace Authentication.Application.Features.CompanyFeatures.AddCompany
 
         public async Task<AddCompanyResponseModel> Handle(AddCompanyRequestModel request, CancellationToken cancellationToken)
         {
-            var companyEntitiy = CompanyMapper.Mapper.Map<Company>(request);
-            if (companyEntitiy is null)
-            {
-                throw new ApplicationException("Issue with mapper");
-            }
-
-            var newCompany = await _companyRepo.AddAsync(companyEntitiy);
+            var company = CompanyMapper.Mapper.Map<Company>(request);
+            var newCompany = await _companyRepo.AddAsync(company);
             var companyResponse = CompanyMapper.Mapper.Map<AddCompanyResponseModel>(newCompany);
             return companyResponse;
         }

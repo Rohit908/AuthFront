@@ -12,5 +12,6 @@ namespace Authentication.Application.Features.UserFeatures.AddUser
         public string Email { get; set; }
         public string Password { get; set; }
         public string CompanyCode { get; set; }
+        public string Role { get; set; }
     }
 }

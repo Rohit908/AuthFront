@@ -21,10 +21,6 @@ namespace Authentication.Application.Features.CompanyFeatures.UpdateCompany
         public async Task<UpdateCompanyResponseModel> Handle(UpdateCompanyRequestModel request, CancellationToken cancellationToken)
         {
             var company = CompanyMapper.Mapper.Map<Company>(request);
-            if (company is null)
-            {
-                throw new ApplicationException("Issue with mapper");
-            }
             var newCompany = await _companyRepo.UpdateAsync(company);
             var companyResponse = CompanyMapper.Mapper.Map<UpdateCompanyResponseModel>(newCompany);
             return companyResponse;

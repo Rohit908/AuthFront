@@ -1,0 +1,13 @@
+D:\.net\Authentication\Authentication.Infrastructure\bin\Release\netcoreapp3.1\Authentication.Infrastructure.deps.json
+D:\.net\Authentication\Authentication.Infrastructure\bin\Release\netcoreapp3.1\Authentication.Infrastructure.dll
+D:\.net\Authentication\Authentication.Infrastructure\bin\Release\netcoreapp3.1\Authentication.Infrastructure.pdb
+D:\.net\Authentication\Authentication.Infrastructure\bin\Release\netcoreapp3.1\Authentication.Core.dll
+D:\.net\Authentication\Authentication.Infrastructure\bin\Release\netcoreapp3.1\Authentication.Core.pdb
+D:\.net\Authentication\Authentication.Infrastructure\obj\Release\netcoreapp3.1\Authentication.Infrastructure.csproj.AssemblyReference.cache
+D:\.net\Authentication\Authentication.Infrastructure\obj\Release\netcoreapp3.1\Authentication.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\.net\Authentication\Authentication.Infrastructure\obj\Release\netcoreapp3.1\Authentication.Infrastructure.AssemblyInfoInputs.cache
+D:\.net\Authentication\Authentication.Infrastructure\obj\Release\netcoreapp3.1\Authentication.Infrastructure.AssemblyInfo.cs
+D:\.net\Authentication\Authentication.Infrastructure\obj\Release\netcoreapp3.1\Authentication.Infrastructure.csproj.CoreCompileInputs.cache
+D:\.net\Authentication\Authentication.Infrastructure\obj\Release\netcoreapp3.1\Authentication.Infrastructure.csproj.CopyComplete
+D:\.net\Authentication\Authentication.Infrastructure\obj\Release\netcoreapp3.1\Authentication.Infrastructure.dll
+D:\.net\Authentication\Authentication.Infrastructure\obj\Release\netcoreapp3.1\Authentication.Infrastructure.pdb

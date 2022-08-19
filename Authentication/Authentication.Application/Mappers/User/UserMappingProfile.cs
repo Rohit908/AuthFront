@@ -1,5 +1,6 @@
 ﻿using Authentication.Application.Commands.User;
 using Authentication.Application.Features.UserFeatures.AddUser;
+using Authentication.Application.Features.UserFeatures.DeleteUser;
 using Authentication.Application.Features.UserFeatures.GetAllUser;
 using Authentication.Application.Features.UserFeatures.UpdateUser;
 using Authentication.Application.Queries;
@@ -24,6 +25,9 @@ namespace Authentication.Application.Mappers.User
 
             CreateMap<AppUser, UpdateUserResponseModel>().ReverseMap();
             CreateMap<AppUser, UpdateUserRequestModel>().ReverseMap();
+
+            CreateMap<AppUser, DeleteUserResponseModel>().ReverseMap();
+
         }
     }
 }
